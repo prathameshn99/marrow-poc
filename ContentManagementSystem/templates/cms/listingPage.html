@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul class="horizontal">
+        <li>
+            <a href="{{ url_for('cms.listData', page=page-1, sortyby=sort) }}">Previous</a>
+        </li>
+        <li>
+            <p>{{ total_count }}</p>
+        </li>
+        <li>
+            <p>{{ page }}</p>
+        </li>
+        <li>
+            <a href="{{ url_for('cms.listData', page=page+1, sortyby=sort) }}">Next</a>
+        </li>
+        <li>
+            <a href="{{ url_for('cms.listData', page=page, sortyby='date_added') }}">Sort by: Date Added</a>
+        </li>
+        <li>
+            <a href="{{ url_for('cms.listData', page=page, sortyby='release_year') }}">Sort by: Release Year</a>
+        </li>
+        <li>
+            <a href="{{ url_for('cms.listData', page=page, sortyby='duration') }}">Sort by: Duration</a>
+        </li>
+    </ul>
+    <table>
+        <th>
+            <td>
+                ID
+            </td>
+            <td>
+                TYPE
+            </td>
+            <td>
+                Director
+            </td>
+            <td>
+                Cast
+            </td>
+            <td>
+                Country
+            </td>
+            <td>
+                Date Added
+            </td>
+            <td>
+                Release Year
+            </td>
+            <td>
+                Rating
+            </td>
+            <td>
+                Duration
+            </td>
+            <td>
+                Listed Within
+            </td>
+            <td>
+                Description
+            </td>
+        </th>
+        {% for movie in movie_list %}
+        <tr>
+            <td>{{movie.show_id}}</td>
+            <td>{{movie.type}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.cast}}</td>
+            <td>{{movie.country}}</td>
+            <td>{{movie.date_added}}</td>
+            <td>{{movie.release_year}}</td>
+            <td>{{movie.rating}}</td>
+            <td>{{movie.duration}}</td>
+            <td>{{movie.listed_in}}</td>
+            <td>{{movie.description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
